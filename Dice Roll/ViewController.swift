@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class ViewController: UIViewController {
     
-    var randomDiceIndex1: Int = 0
-    var randomDiceIndex2: Int = 0
+    var randomDiceIndex1: Int!
+    var randomDiceIndex2: Int!
     
     @IBOutlet weak var diceImageView1: UIImageView!
     @IBOutlet weak var diceImageView2: UIImageView!
@@ -19,6 +20,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateDice()
+    }
+
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        updateDice()
+    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+
     }
     
     let diceOptionsArray : Array = ["dice1", "dice2", "dice3", "dice4", "dice5", "dice6"]
